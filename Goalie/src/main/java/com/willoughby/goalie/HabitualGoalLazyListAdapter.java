@@ -28,6 +28,7 @@ public class HabitualGoalLazyListAdapter extends GreenDaoListAdapter<HabitualGoa
     @Override
     public void bindView(View view, Context context, HabitualGoal item) {
         ((TextView)view).setText(item.getTitle());
+        ((TextView) view).setHeight(100);
 
     }
 }
