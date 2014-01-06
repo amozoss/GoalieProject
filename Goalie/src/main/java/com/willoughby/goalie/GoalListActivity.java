@@ -76,23 +76,6 @@ public class GoalListActivity extends FragmentActivity
         // As we are in development we will use the DevOpenHelper which drops the database on a schema update
 
 
-        String noteText = "My note";
-        String comment = "My Comment";
-/*
-        // [C]reate
-        Note note = new Note(null, noteText, comment, new Date());
-        noteDao.insert(note);
-        System.out.println("Inserted: " + note.getId());
-        // [R]ead
-        noteDao.load(1l);
-        */
-        //noteDao.loadAll();
-        // [U]pdate
-        //note.setComment("This is a new comment");
-        //noteDao.update(note);
-        // [D]elete
-        //noteDao.delete(note);
-        //noteDao.deleteAll();
     }
 
 
@@ -109,7 +92,7 @@ public class GoalListActivity extends FragmentActivity
         switch (item.getItemId()) {
             case R.id.action_add_tapped:
                 //public HabitualGoal(Long id, String color, Integer defaultCellType, java.util.Date dueDate, Integer goal, Float priority, java.util.Date startDate, java.util.Date taskCompleted, String title, String type) {
-                HabitualGoal hg = new HabitualGoal(null, String.valueOf(Color.RED), 0, null, 1, 1.0f, new Date(), null, "Floss", "Daily");
+                HabitualGoal hg = new HabitualGoal(null, String.valueOf(Color.RED), 0, null, 1, 1.0f, new Date(), null, "Untitled", "Daily");
                 habitualGoalDao.insert(hg);
                 //habitualGoals.add(hg);
                 System.out.println("Inserted: " + hg.getId());

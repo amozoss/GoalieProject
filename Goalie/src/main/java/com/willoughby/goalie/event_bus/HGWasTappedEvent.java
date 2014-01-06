@@ -1,19 +1,18 @@
-package com.willoughby.goalie;
+package com.willoughby.goalie.event_bus;
 
 import com.willoughby.goalie.db.generated.HabitualGoal;
 
 /**
  * Created by dan on 1/5/14.
  */
-public class FinishedHGEditEvent {
+public class HGWasTappedEvent {
     public HabitualGoal getHabitualGoal() {
         return habitualGoal;
     }
 
     private HabitualGoal habitualGoal;
 
-    public FinishedHGEditEvent(HabitualGoal habitualGoal){
+    public HGWasTappedEvent(HabitualGoal habitualGoal){
         this.habitualGoal = habitualGoal;
     }
-
 }

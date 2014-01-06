@@ -12,6 +12,7 @@ import com.willoughby.goalie.db.generated.DaoMaster;
 import com.willoughby.goalie.db.generated.DaoSession;
 import com.willoughby.goalie.db.generated.HabitualGoal;
 import com.willoughby.goalie.db.generated.HabitualGoalDao;
+import com.willoughby.goalie.event_bus.HGFinishedEditEvent;
 
 import de.greenrobot.event.EventBus;
 
@@ -36,7 +37,6 @@ public class GoalDetailFragment extends Fragment {
     private HabitualGoal newlyCreatedOrBeingEditedHabitualGoal;
     private EditText editText;
     private View rootView;
-    private EventBus eventBus;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -51,9 +51,6 @@ public class GoalDetailFragment extends Fragment {
 
         daoMaster = ((GoalieApp)this.getActivity().getApplication()).daoMaster;
         daoSession = ((GoalieApp)this.getActivity().getApplication()).daoSession;
-        eventBus = ((GoalieApp)this.getActivity().getApplication()).eventBus;
-
-        EventBus.getDefault().register(this);
 
         habitualGoalDao = daoSession.getHabitualGoalDao();
 
@@ -77,7 +74,7 @@ public class GoalDetailFragment extends Fragment {
                     String strValue = editText.getText().toString();
                     newlyCreatedOrBeingEditedHabitualGoal.setTitle(strValue);
                     habitualGoalDao.update(newlyCreatedOrBeingEditedHabitualGoal);
-                    eventBus.post(new FinishedHGEditEvent(newlyCreatedOrBeingEditedHabitualGoal));
+                    EventBus.getDefault().post(new HGFinishedEditEvent(newlyCreatedOrBeingEditedHabitualGoal));
 
                     //System.out.println("************************: " + strValue);
                 }

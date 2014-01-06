@@ -10,9 +10,11 @@ import com.willoughby.goalie.db.generated.DaoMaster;
 import com.willoughby.goalie.db.generated.DaoSession;
 import com.willoughby.goalie.db.generated.HabitualGoal;
 import com.willoughby.goalie.db.generated.HabitualGoalDao;
+import com.willoughby.goalie.event_bus.HGFinishedEditEvent;
 
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.QueryBuilder;
+import de.greenrobot.event.EventBus;
 
 /**
  * A list fragment representing a list of Goals. This fragment
@@ -90,6 +92,7 @@ public class GoalListFragment extends ListFragment {
 
         habitualGoalDao= daoSession.getHabitualGoalDao();
 
+        EventBus.getDefault().register(this);
 
 
 
@@ -111,13 +114,6 @@ public class GoalListFragment extends ListFragment {
             setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
         }
     }
-
-
-
-
-
-
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -177,5 +173,14 @@ public class GoalListFragment extends ListFragment {
         }
 
         mActivatedPosition = position;
+    }
+
+
+    public void onEvent(HGFinishedEditEvent event) {
+        query= habitualGoalDao.queryBuilder().where(HabitualGoalDao.Properties.Id.gt(0l));
+        habitualGoals = query.listLazy();
+        adapter.setLazyList(habitualGoals);
+
+        System.out.println("Refreshing...");
     }
 }
