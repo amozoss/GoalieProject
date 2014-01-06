@@ -8,10 +8,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.willoughby.goalie.db.gen.DaoMaster;
-import com.willoughby.goalie.db.gen.DaoSession;
-import com.willoughby.goalie.db.gen.HabitualGoal;
-import com.willoughby.goalie.db.gen.HabitualGoalDao;
+import com.willoughby.goalie.db.generated.DaoMaster;
+import com.willoughby.goalie.db.generated.DaoSession;
+import com.willoughby.goalie.db.generated.HabitualGoal;
+import com.willoughby.goalie.db.generated.HabitualGoalDao;
 
 import java.util.Date;
 import java.util.List;

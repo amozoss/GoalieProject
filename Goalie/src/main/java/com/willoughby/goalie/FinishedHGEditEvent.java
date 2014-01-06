@@ -1,6 +1,6 @@
 package com.willoughby.goalie;
 
-import com.willoughby.goalie.db.gen.HabitualGoal;
+import com.willoughby.goalie.db.generated.HabitualGoal;
 
 /**
  * Created by dan on 1/5/14.

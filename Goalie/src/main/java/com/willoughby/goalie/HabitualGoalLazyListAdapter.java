@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.willoughby.goalie.db.gen.HabitualGoal;
+import com.willoughby.goalie.db.generated.HabitualGoal;
 
 import de.greenrobot.dao.query.LazyList;
 

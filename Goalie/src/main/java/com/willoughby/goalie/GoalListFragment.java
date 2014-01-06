@@ -6,10 +6,10 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
-import com.willoughby.goalie.db.gen.DaoMaster;
-import com.willoughby.goalie.db.gen.DaoSession;
-import com.willoughby.goalie.db.gen.HabitualGoal;
-import com.willoughby.goalie.db.gen.HabitualGoalDao;
+import com.willoughby.goalie.db.generated.DaoMaster;
+import com.willoughby.goalie.db.generated.DaoSession;
+import com.willoughby.goalie.db.generated.HabitualGoal;
+import com.willoughby.goalie.db.generated.HabitualGoalDao;
 
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.QueryBuilder;

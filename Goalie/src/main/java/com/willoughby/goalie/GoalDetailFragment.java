@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.willoughby.goalie.db.gen.DaoMaster;
-import com.willoughby.goalie.db.gen.DaoSession;
-import com.willoughby.goalie.db.gen.HabitualGoal;
-import com.willoughby.goalie.db.gen.HabitualGoalDao;
+import com.willoughby.goalie.db.generated.DaoMaster;
+import com.willoughby.goalie.db.generated.DaoSession;
+import com.willoughby.goalie.db.generated.HabitualGoal;
+import com.willoughby.goalie.db.generated.HabitualGoalDao;
 
 import de.greenrobot.event.EventBus;
 

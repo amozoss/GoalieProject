@@ -3,8 +3,8 @@ package com.willoughby.goalie;
 import android.app.Application;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.willoughby.goalie.db.gen.DaoMaster;
-import com.willoughby.goalie.db.gen.DaoSession;
+import com.willoughby.goalie.db.generated.DaoMaster;
+import com.willoughby.goalie.db.generated.DaoSession;
 
 import de.greenrobot.event.EventBus;
 
