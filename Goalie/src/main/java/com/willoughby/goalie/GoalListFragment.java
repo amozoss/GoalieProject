@@ -11,6 +11,7 @@ import com.willoughby.goalie.db.generated.DaoSession;
 import com.willoughby.goalie.db.generated.HabitualGoal;
 import com.willoughby.goalie.db.generated.HabitualGoalDao;
 import com.willoughby.goalie.event_bus.HGFinishedEditEvent;
+import com.willoughby.goalie.event_bus.HGWasTappedEvent;
 
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.QueryBuilder;
@@ -142,6 +143,7 @@ public class GoalListFragment extends ListFragment {
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
         mCallbacks.onItemSelected(habitualGoals.get(position).getId());
+        EventBus.getDefault().post(new HGWasTappedEvent(habitualGoals.get(position)));
     }
 
     @Override

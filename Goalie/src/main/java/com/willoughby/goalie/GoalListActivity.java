@@ -50,7 +50,7 @@ public class GoalListActivity extends FragmentActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goal_list);
+        setContentView(R.layout.fragment_goal_list);
 
         daoMaster = ((GoalieApp)this.getApplication()).daoMaster;
         daoSession = ((GoalieApp)this.getApplication()).daoSession;

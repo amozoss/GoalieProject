@@ -1,5 +1,8 @@
 package com.willoughby.goalie.db.generated;
 
+import android.graphics.Color;
+import android.support.v7.appcompat.R;
+
 import java.util.List;
 
 import com.willoughby.goalie.HasId;
@@ -266,6 +269,39 @@ public class HabitualGoal implements HasId<Long> {
     public String toString()
     {
         return title;
+    }
+
+
+    public int getPriorityColor(float priority) {
+
+        int c = 0;
+        if (priority <= 1.0) {
+            c =  Color.GREEN;
+        }
+        else if (priority <= 2.0) {
+            c =  Color.YELLOW;
+        }
+        else if (priority <= 3.0) {
+            c =  Color.RED;
+        }
+
+        return c;
+    }
+
+    public String getPriorityString(float priority) {
+
+        String s = null;
+        if (priority <= 1.0) {
+            s = "Low";
+        }
+        else if (priority <= 2.0) {
+            s = "Med";
+        }
+        else if (priority <= 3.0) {
+            s = "High";
+        }
+
+        return s;
     }
     // KEEP METHODS END
 

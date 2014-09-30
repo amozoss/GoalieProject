@@ -22,13 +22,23 @@ public class HabitualGoalLazyListAdapter extends GreenDaoListAdapter<HabitualGoa
     public View newView(Context context, HabitualGoal item, ViewGroup parent) {
         if (item == null) return null;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        return inflater.inflate(R.layout.hg_list_view_cell, parent, false);
+        return inflater.inflate(R.layout.view_goal_tablecell, parent, false);
     }
 
     @Override
     public void bindView(View view, Context context, HabitualGoal item) {
-        ((TextView)view).setText(item.getTitle());
-        ((TextView) view).setHeight(100);
+        //((TextView)view).setText(item.getTitle());
+        //((TextView) view).setHeight(100);
+        System.out.println("************************: ");
+        View rootView = view;
+        TextView titleView = ((TextView) rootView.findViewById(R.id.titleView));
+        titleView.setText(item.getTitle());
+
+        TextView priorityView = ((TextView) rootView.findViewById(R.id.priorityText));
+        float priority = item.getPriority();
+        priorityView.setText(item.getPriorityString(priority));
+        priorityView.setBackgroundColor(item.getPriorityColor(priority));
+
 
     }
 }
