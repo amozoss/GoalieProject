@@ -1,8 +1,11 @@
 package com.willoughby.goalie;
 
+
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -10,12 +13,9 @@ import com.willoughby.goalie.db.generated.DaoMaster;
 import com.willoughby.goalie.db.generated.DaoSession;
 import com.willoughby.goalie.db.generated.HabitualGoal;
 import com.willoughby.goalie.db.generated.HabitualGoalDao;
-import com.willoughby.goalie.event_bus.HGFinishedEditEvent;
-import com.willoughby.goalie.event_bus.HGWasTappedEvent;
 
 import de.greenrobot.dao.query.LazyList;
 import de.greenrobot.dao.query.QueryBuilder;
-import de.greenrobot.event.EventBus;
 
 /**
  * A list fragment representing a list of Goals. This fragment
@@ -93,21 +93,18 @@ public class GoalListFragment extends ListFragment {
 
         habitualGoalDao= daoSession.getHabitualGoalDao();
 
-        EventBus.getDefault().register(this);
-
-
-
-        query= habitualGoalDao.queryBuilder().where(HabitualGoalDao.Properties.Id.gt(0l));
-        habitualGoals = query.listLazy();
-
-
-        adapter = new HabitualGoalLazyListAdapter(this.getActivity(),habitualGoals);
-        setListAdapter(adapter);
+        Log.d("test", "onCreate");
     }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        query= habitualGoalDao.queryBuilder().where(HabitualGoalDao.Properties.Id.gt(0l));
+        habitualGoals = query.listLazy();
+        adapter = new HabitualGoalLazyListAdapter(this.getActivity(),habitualGoals);
+        setListAdapter(adapter);
 
         // Restore the previously serialized activated item position.
         if (savedInstanceState != null
@@ -143,7 +140,7 @@ public class GoalListFragment extends ListFragment {
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
         mCallbacks.onItemSelected(habitualGoals.get(position).getId());
-        EventBus.getDefault().post(new HGWasTappedEvent(habitualGoals.get(position)));
+        //EventBus.getDefault().post(new HGWasTappedEvent(habitualGoals.get(position)));
     }
 
     @Override
@@ -178,11 +175,8 @@ public class GoalListFragment extends ListFragment {
     }
 
 
+  /*
     public void onEvent(HGFinishedEditEvent event) {
-        query= habitualGoalDao.queryBuilder().where(HabitualGoalDao.Properties.Id.gt(0l));
-        habitualGoals = query.listLazy();
-        adapter.setLazyList(habitualGoals);
-
-        System.out.println("Refreshing...");
     }
+    */
 }

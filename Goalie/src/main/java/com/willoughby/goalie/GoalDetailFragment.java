@@ -2,19 +2,15 @@ package com.willoughby.goalie;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.willoughby.goalie.db.generated.DaoMaster;
 import com.willoughby.goalie.db.generated.DaoSession;
 import com.willoughby.goalie.db.generated.HabitualGoal;
 import com.willoughby.goalie.db.generated.HabitualGoalDao;
-import com.willoughby.goalie.event_bus.HGFinishedEditEvent;
-
-import de.greenrobot.event.EventBus;
 
 /**
  * A fragment representing a single Goal detail screen.
@@ -35,7 +31,6 @@ public class GoalDetailFragment extends Fragment {
     public static final String ARG_ITEM_ID = "item_id";
 
     private HabitualGoal newlyCreatedOrBeingEditedHabitualGoal;
-    private EditText editText;
     private View rootView;
 
     /**
@@ -55,35 +50,28 @@ public class GoalDetailFragment extends Fragment {
         habitualGoalDao = daoSession.getHabitualGoalDao();
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
             newlyCreatedOrBeingEditedHabitualGoal = habitualGoalDao.load(getArguments().getLong(ARG_ITEM_ID));
         }
+    }
+
+    @Override
+    public void onPause() {
+      super.onPause();
+      //String strValue = editText.getText().toString();
+      //newlyCreatedOrBeingEditedHabitualGoal.setTitle(strValue);
+      newlyCreatedOrBeingEditedHabitualGoal.update();
+      Log.d("test", "updated in pause");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_goal_detail, container, false);
-        editText = ((EditText) rootView.findViewById(R.id.goal_detail));
-
-        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    String strValue = editText.getText().toString();
-                    newlyCreatedOrBeingEditedHabitualGoal.setTitle(strValue);
-                    habitualGoalDao.update(newlyCreatedOrBeingEditedHabitualGoal);
-                    EventBus.getDefault().post(new HGFinishedEditEvent(newlyCreatedOrBeingEditedHabitualGoal));
-
-                    //System.out.println("************************: " + strValue);
-                }
-            }
-        });
 
         // Show the dummy content as text in a TextView.
         if (newlyCreatedOrBeingEditedHabitualGoal != null) {
-            editText.setText(newlyCreatedOrBeingEditedHabitualGoal.getTitle(), TextView.BufferType.EDITABLE);
+            //editText.setText(newlyCreatedOrBeingEditedHabitualGoal.getTitle(), TextView.BufferType.EDITABLE);
         }
 
         return rootView;

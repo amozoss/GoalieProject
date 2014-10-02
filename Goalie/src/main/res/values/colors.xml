@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="light_purple">#aaf</color>
+  <color name="white">#ffffff</color>
+  <color name="goalie_light_blue">#2bd0fb</color>
+  <color name="goalie_blue">#30a2fe</color>
+  <color name="goalie_gray">#3d3e3f</color>
+</resources>
